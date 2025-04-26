@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+
+    >
+
+    <LinearLayout
+        android:layout_width="349dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textSize="14sp"
+                android:textStyle="bold">
+
+            </TextView>
+            <TextView
+                android:id="@+id/priorityTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textSize="14sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/dueDateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            </TextView>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/taskCompleteButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
