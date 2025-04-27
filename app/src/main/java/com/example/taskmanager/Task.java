@@ -1,5 +1,6 @@
 package com.example.taskmanager;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Task {
@@ -7,16 +8,16 @@ public class Task {
     private String title;
     private String description;
     private int priority;
-    private Date dueDate;
+    private LocalDate dueDate;
     private boolean isCompleted;
 
-    public Task(int id, String title, String description, int priority, Date dueDate, boolean isCompleted) {
+    public Task(int id, String title, String description, int priority, LocalDate dueDate) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.dueDate = dueDate;
-        this.isCompleted = isCompleted;
+        this.isCompleted = true;
     }
 
     public int getId() {
@@ -35,8 +36,8 @@ public class Task {
         return priority;
     }
 
-    public Date getDueDate() {
-        return dueDate;
+    public LocalDate getDueDate() {
+        return (dueDate);
     }
 
     public boolean isCompleted() {
@@ -59,11 +60,25 @@ public class Task {
         this.priority = priority;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
     public void setCompleted(boolean completed) {
         isCompleted = completed;
     }
+    public String getPriorityString(){
+        String priority = "";
+        if(this.getPriority()== 1) {
+            priority=  "High";
+
+        } else if (this.getPriority()== 0) {
+            priority =   "Medium";
+
+        } else if (this.getPriority()== -1) {
+            priority =  "Low";
+        }
+        return priority;
+    }
+
 }

@@ -40,9 +40,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         Task taskItem =this.taskList.get(position);
 
         holder.titleTextView.setText(taskItem.getTitle());
-        holder.priorityTextView.setText(taskItem.getPriority());
+        holder.priorityTextView.setText(taskItem.getPriorityString());
         holder.decsriptionTextView.setText(taskItem.getDescription());
-        holder.dueDateTextVIew.setText((CharSequence) taskItem.getDueDate());
+        holder.dueDateTextVIew.setText(String.valueOf(taskItem.getDueDate()));
 
         holder.completeTaskButton.setImageResource(
             taskItem.isCompleted() ? R.drawable.ticksolid : R.drawable.tickgrey

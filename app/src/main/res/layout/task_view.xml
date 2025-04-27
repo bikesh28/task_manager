@@ -19,7 +19,7 @@
         android:padding="12dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="327dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
@@ -33,6 +33,7 @@
                 android:textStyle="bold">
 
             </TextView>
+
             <TextView
                 android:id="@+id/priorityTextView"
                 android:layout_width="match_parent"
@@ -68,17 +69,23 @@
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_marginStart="12dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="@color/black"
+            android:contentDescription="Button Frame"
+
+            >
 
             <ImageButton
                 android:id="@+id/taskCompleteButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:background="@android:color/transparent"
                 android:clickable="true"
                 android:focusable="true"
-                android:scaleType="centerInside" />
+                android:src="@drawable/ticksolid"
+                android:scaleType="fitCenter"
+
+                />
         </FrameLayout>
     </LinearLayout>
 
