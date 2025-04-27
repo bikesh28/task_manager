@@ -16,13 +16,13 @@
         />
     <item
         android:id="@+id/action_refresh"
-        android:icon="@drawable/search"
+        android:icon="@drawable/refresh"
         android:title="Refresh"
         app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/action_setting"
-        android:icon="@drawable/plus"
+        android:icon="@drawable/setting"
         android:title="Setting"
         app:showAsAction="ifRoom"
         />

@@ -1,18 +1,21 @@
 package com.example.taskmanager;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,12 +30,14 @@ public class ActivityMain extends AppCompatActivity {
     private int nextId = 0;
     private TaskAdapter taskAdapter;
     private FloatingActionButton floatingButton;
+    private TextView emptyTextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        emptyTextView = findViewById(R.id.emptyTextView);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -40,14 +45,48 @@ public class ActivityMain extends AppCompatActivity {
 
         this.taskList = new ArrayList<>();
         loadTask();
-
+        updateUI();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         floatingButton.setOnClickListener(v ->{
             showAddTaskDialog();
         });
 
+
         taskAdapter =new TaskAdapter(taskList, this);
         recyclerView.setAdapter(taskAdapter);
+
+
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+
+        return true;
+    }@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_add) {
+            showAddTaskDialog();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_refresh){
+            taskAdapter.notifyDataSetChanged(  );
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void updateUI() {
+        if (taskList.isEmpty()) {
+            emptyTextView.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            emptyTextView.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
 
     private void showAddTaskDialog(){
         View dialogView = LayoutInflater.from(this)
@@ -75,7 +114,9 @@ public class ActivityMain extends AppCompatActivity {
                     String description = (descriptionInput.getText().toString());
                     String selectedPriority = priorityInput.getSelectedItem().toString();
                     int priorityValue;
+
                     switch (selectedPriority){
+
                         case "High":
                              priorityValue = 1;
                              break;
@@ -99,6 +140,7 @@ public class ActivityMain extends AppCompatActivity {
                     @SuppressLint({"NewApi", "LocalSuppress"})
                     Task taskItem = new Task(nextId++,title,description,priorityValue,LocalDate.of(year,month,day));
                     taskList.add(taskItem);
+                    updateUI();
                     Toast.makeText(this, "Task Added", Toast.LENGTH_SHORT).show();
                     taskAdapter.notifyItemInserted(taskList.size()-1);
                     recyclerView.scrollToPosition(0);

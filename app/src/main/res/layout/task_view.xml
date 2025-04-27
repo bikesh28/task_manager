@@ -13,13 +13,13 @@
     >
 
     <LinearLayout
-        android:layout_width="349dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="12dp">
 
         <LinearLayout
-            android:layout_width="327dp"
+            android:layout_width="318dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
@@ -65,24 +65,15 @@
             </TextView>
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
-            android:gravity="center"
-            android:background="@color/black"
-            android:contentDescription="Button Frame"
 
-            >
+        <CheckBox
+            android:id="@+id/taskCompleteCheckBox"
+            android:layout_width="59dp"
+            android:layout_height="108dp"
+            android:layout_gravity="center"
+            android:checked="false"
+            android:contentDescription="Task Completed" />
 
-            <CheckBox
-                android:id="@+id/taskCompleteCheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:layout_gravity="center"
-                android:contentDescription="Task Completed" />
-        </FrameLayout>
     </LinearLayout>
 
 

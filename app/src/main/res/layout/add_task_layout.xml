@@ -8,31 +8,44 @@
     <EditText
         android:id="@+id/addTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
+        android:layout_height="58dp"
         android:hint="Title"
-        />
+        android:inputType="text" />
+
     <EditText
         android:id="@+id/addDescription"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="63dp"
         android:hint="Description"
-        android:inputType="text"
-    />
+        android:inputType="text" />
 
-
-
-    <DatePicker
-        android:id="@+id/addDueDate"
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:hint="Due Date" />
+
+        android:layout_height="260dp"
+        android:maxHeight="100dp">
+
+        <DatePicker
+            android:id="@+id/addDueDate"
+            android:layout_width="394dp"
+            android:layout_height="327dp"
+            android:layout_gravity="center"
+            android:focusable="false"
+            android:inputType="none"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+
+
+            android:text="Due Date"
+
+            />
+    </FrameLayout>
+
 
     <Spinner
         android:id="@+id/addPriority"
         android:layout_width="match_parent"
-        android:layout_height="37dp"
+        android:layout_height="39dp"
         android:layout_margin="16dp"
         android:entries="@array/priority_levels"
         android:spinnerMode="dropdown"

@@ -40,19 +40,38 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task taskItem =this.taskList.get(position);
 
+
+
         holder.titleTextView.setText(taskItem.getTitle());
         holder.priorityTextView.setText(taskItem.getPriorityString());
         holder.decsriptionTextView.setText(taskItem.getDescription());
         holder.dueDateTextVIew.setText(String.valueOf(taskItem.getDueDate()));
         holder.completeTaskButton.setChecked(taskItem.isCompleted());
 
+        int priorityColor = getPriorityColor(taskItem.getPriority());
+        holder.itemView.setBackgroundColor(priorityColor);
+
         holder.completeTaskButton.setOnCheckedChangeListener((buttonView, isChecked)  ->{
             taskItem.setCompleted(true);
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.completed_task));
+            holder.completeTaskButton.setClickable(false);
             Toast.makeText(context,"Task Completed", Toast.LENGTH_SHORT).show();
-            notifyDataSetChanged();
         });
 
 
+
+
+    }private int getPriorityColor(int priority) {
+        switch (priority) {
+            case -1: // Low Priority
+                return context.getResources().getColor(R.color.low_priority);
+            case 0: // Medium Priority
+                return context.getResources().getColor(R.color.medium_priority);
+            case 1: // High Priority
+                return context.getResources().getColor(R.color.high_priority);
+            default:
+                return context.getResources().getColor(R.color.medium_priority);
+        }
     }
 
     static class TaskViewHolder extends RecyclerView.ViewHolder{
@@ -69,6 +88,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             this.priorityTextView = itemView.findViewById(R.id.priorityTextView);
             this.titleTextView = itemView.findViewById(R.id.titleTextView);
             this.completeTaskButton = itemView.findViewById(R.id.taskCompleteCheckBox);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    completeTaskButton.setChecked(true);
+
+                }
+            });
 
         }
 
