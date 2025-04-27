@@ -75,17 +75,13 @@
 
             >
 
-            <ImageButton
-                android:id="@+id/taskCompleteButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+            <CheckBox
+                android:id="@+id/taskCompleteCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
                 android:layout_gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/ticksolid"
-                android:scaleType="fitCenter"
-
-                />
+                android:contentDescription="Task Completed" />
         </FrameLayout>
     </LinearLayout>
 

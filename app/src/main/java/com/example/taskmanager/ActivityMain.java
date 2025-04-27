@@ -39,7 +39,7 @@ public class ActivityMain extends AppCompatActivity {
         floatingButton = findViewById(R.id.floatingButton);
 
         this.taskList = new ArrayList<>();
-        //loadTask();
+        loadTask();
 
         floatingButton.setOnClickListener(v ->{
             showAddTaskDialog();
@@ -85,10 +85,10 @@ public class ActivityMain extends AppCompatActivity {
                             break;
 
                         case "Low":
-                            priorityValue = 1;
+                            priorityValue = -1;
                             break;
                         default:
-                            priorityValue = 1;
+                            priorityValue = 0;
                             break;
                     }
 
@@ -100,7 +100,7 @@ public class ActivityMain extends AppCompatActivity {
                     Task taskItem = new Task(nextId++,title,description,priorityValue,LocalDate.of(year,month,day));
                     taskList.add(taskItem);
                     Toast.makeText(this, "Task Added", Toast.LENGTH_SHORT).show();
-                    taskAdapter.notifyItemInserted(0);
+                    taskAdapter.notifyItemInserted(taskList.size()-1);
                     recyclerView.scrollToPosition(0);
 
                 }).show();
@@ -109,6 +109,6 @@ public class ActivityMain extends AppCompatActivity {
     @SuppressLint("NewApi")
     public void loadTask(){
         taskList.clear();
-        taskList.add(new Task(1,"Get hair done","I need to get my hair done",1, LocalDate.of(2020,01,01)));
+        taskList.add(new Task(nextId++,"Get hair done","I need to get my hair done",1, LocalDate.of(2020,01,01)));
     }
 }

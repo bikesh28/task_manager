@@ -17,7 +17,7 @@ public class Task {
         this.description = description;
         this.priority = priority;
         this.dueDate = dueDate;
-        this.isCompleted = true;
+        this.isCompleted = false;
     }
 
     public int getId() {

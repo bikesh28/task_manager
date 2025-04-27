@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,12 +44,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.priorityTextView.setText(taskItem.getPriorityString());
         holder.decsriptionTextView.setText(taskItem.getDescription());
         holder.dueDateTextVIew.setText(String.valueOf(taskItem.getDueDate()));
+        holder.completeTaskButton.setChecked(taskItem.isCompleted());
 
-        holder.completeTaskButton.setImageResource(
-            taskItem.isCompleted() ? R.drawable.ticksolid : R.drawable.tickgrey
-        );
-
-        holder.completeTaskButton.setOnClickListener(view ->{
+        holder.completeTaskButton.setOnCheckedChangeListener((buttonView, isChecked)  ->{
             taskItem.setCompleted(true);
             Toast.makeText(context,"Task Completed", Toast.LENGTH_SHORT).show();
             notifyDataSetChanged();
@@ -62,7 +60,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public TextView decsriptionTextView;
         public TextView priorityTextView;
         public TextView dueDateTextVIew;
-        public ImageButton completeTaskButton;
+        public CheckBox completeTaskButton;
 
         public TaskViewHolder(View itemView){
             super(itemView);
@@ -70,7 +68,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             this.dueDateTextVIew = itemView.findViewById(R.id.dueDateTextView);
             this.priorityTextView = itemView.findViewById(R.id.priorityTextView);
             this.titleTextView = itemView.findViewById(R.id.titleTextView);
-            this.completeTaskButton = itemView.findViewById(R.id.taskCompleteButton);
+            this.completeTaskButton = itemView.findViewById(R.id.taskCompleteCheckBox);
 
         }
 
