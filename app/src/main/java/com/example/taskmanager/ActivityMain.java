@@ -97,9 +97,7 @@ public class ActivityMain extends AppCompatActivity {
         Spinner priorityInput = dialogView.findViewById(R.id.addPriority);
 
         DatePicker datePicker = dialogView.findViewById(R.id.addDueDate);
-        int day = datePicker.getDayOfMonth();
-        int month = datePicker.getMonth();
-        int year = datePicker.getYear();
+
 
 
         new AlertDialog.Builder(this)
@@ -113,6 +111,9 @@ public class ActivityMain extends AppCompatActivity {
                     String title = (titleInput.getText()).toString().trim();
                     String description = (descriptionInput.getText().toString());
                     String selectedPriority = priorityInput.getSelectedItem().toString();
+                    int day = datePicker.getDayOfMonth();
+                    int month = datePicker.getMonth();
+                    int year = datePicker.getYear();
                     int priorityValue;
                     switch (selectedPriority){
                         case "High":

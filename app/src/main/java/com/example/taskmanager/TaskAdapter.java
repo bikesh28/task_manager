@@ -6,6 +6,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -79,7 +80,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         editTitle.setText(taskItem.getTitle());
         editDescription.setText(taskItem.getDescription());
-        editPriority.setSelection(taskItem.getPriority());
+
+        String priorityString;
+        switch (taskItem.getPriority()){
+            case 1:
+                priorityString = "High";
+                break;
+            case 0:
+                priorityString = "Medium";
+                break;
+            default:
+                priorityString = "Low";
+                break;
+        }
+        ArrayAdapter<String> adapter = (ArrayAdapter<String>) editPriority.getAdapter();
+        int positionS = adapter.getPosition(priorityString);
+        editPriority.setSelection(positionS);
 
         LocalDate date = taskItem.getDueDate();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
