@@ -71,7 +71,7 @@ public class ActivityMain extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.action_refresh){
-            taskAdapter.notifyDataSetChanged(  );
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -114,9 +114,7 @@ public class ActivityMain extends AppCompatActivity {
                     String description = (descriptionInput.getText().toString());
                     String selectedPriority = priorityInput.getSelectedItem().toString();
                     int priorityValue;
-
                     switch (selectedPriority){
-
                         case "High":
                              priorityValue = 1;
                              break;
