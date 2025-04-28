@@ -26,11 +26,17 @@
     <DatePicker
         android:id="@+id/editDueDate"
         android:layout_width="match_parent"
-        android:layout_height="352dp" />
+        android:layout_height="349dp"
+        android:layout_gravity="clip_vertical"
+        android:scaleX="0.8"
+        android:scaleY="0.8" />
 
-    <Button
-        android:id="@+id/submitChangesButton"
+
+    <CheckBox
+        android:id="@+id/editTaskCompleted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:text="Is the work complete?"
+
+        />
 </LinearLayout>

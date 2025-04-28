@@ -21,19 +21,19 @@ public class Task {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public int getPriority() {
-        return priority;
+        return this.priority;
     }
 
     public LocalDate getDueDate() {
@@ -41,7 +41,7 @@ public class Task {
     }
 
     public boolean isCompleted() {
-        return isCompleted;
+        return this.isCompleted;
     }
 
     public void setId(int id) {

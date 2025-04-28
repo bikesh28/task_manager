@@ -77,9 +77,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         EditText editDescription = editTaskView.findViewById(R.id.editDescription);
         Spinner editPriority =  editTaskView.findViewById(R.id.editPriority);
         DatePicker editDueDate = editTaskView.findViewById(R.id.editDueDate);
+        CheckBox editTaskCompleted = editTaskView.findViewById(R.id.editTaskCompleted);
 
         editTitle.setText(taskItem.getTitle());
         editDescription.setText(taskItem.getDescription());
+        editTaskCompleted.setChecked(taskItem.isCompleted());
 
         String priorityString;
         switch (taskItem.getPriority()){
@@ -100,7 +102,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         LocalDate date = taskItem.getDueDate();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int year = date.getYear();
-            int month = date.getMonthValue() -1 ;
+            int month = date.getMonthValue()  ;
             int day = date.getDayOfMonth();
             editDueDate.updateDate(year,month,day);
         }
@@ -113,6 +115,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             taskItem.setTitle(editTitle.getText().toString());
             taskItem.setDescription(editDescription.getText().toString());
             String selectedPriority = editPriority.getSelectedItem().toString();
+            taskItem.setCompleted(editTaskCompleted.isChecked());
 
             int priorityValue;
             switch (selectedPriority){
@@ -132,7 +135,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                     break;
             }
             taskItem.setPriority(priorityValue);
-
+            int day = editDueDate.getDayOfMonth();
+            int month = editDueDate.getMonth();
+            int year = editDueDate.getYear();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                taskItem.setDueDate(LocalDate.of(year,month,day));
+            }
 
             notifyItemChanged(position);
         });
@@ -153,6 +161,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         }
 
     }
+    public void updateList(ArrayList<Task> newTaskList) {
+        this.taskList = newTaskList;
+        this.notifyDataSetChanged();
+    }
+
 
 
     static class TaskViewHolder extends RecyclerView.ViewHolder{

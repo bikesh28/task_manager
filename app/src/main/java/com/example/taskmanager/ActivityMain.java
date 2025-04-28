@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -31,6 +32,9 @@ public class ActivityMain extends AppCompatActivity {
     private TaskAdapter taskAdapter;
     private FloatingActionButton floatingButton;
     private TextView emptyTextView;
+    private Button filterAll;
+    private Button filterCompleted;
+    private Button filterIncomplete;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +46,9 @@ public class ActivityMain extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         floatingButton = findViewById(R.id.floatingButton);
+        filterAll = findViewById(R.id.filterAll);
+        filterCompleted = findViewById(R.id.filterCompleted);
+        filterIncomplete = findViewById(R.id.filterIncomplete);
 
         this.taskList = new ArrayList<>();
         loadTask();
@@ -56,6 +63,27 @@ public class ActivityMain extends AppCompatActivity {
         taskAdapter =new TaskAdapter(taskList, this);
         recyclerView.setAdapter(taskAdapter);
 
+        filterAll.setOnClickListener( v-> {
+            taskAdapter.updateList(taskList);
+        });
+        filterIncomplete.setOnClickListener(v->{
+            ArrayList<Task> incompleteTask = new ArrayList<>();
+            for(Task task : taskList){
+                if(!task.isCompleted()){
+                    incompleteTask.add(task);
+                }
+            }
+            taskAdapter.updateList(incompleteTask);
+        });
+        filterCompleted.setOnClickListener(v->{
+            ArrayList<Task> completedTask = new ArrayList<>();
+            for(Task task: taskList){
+                if(task.isCompleted()){
+                    completedTask.add(task);
+                }
+            }
+            taskAdapter.updateList(completedTask);
+        });
 
     }
     @Override
