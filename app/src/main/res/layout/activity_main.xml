@@ -34,6 +34,7 @@
 
         <Button
             android:id="@+id/filterAll"
+            android:layout_margin="3dp"
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:text="All Tasks" />
@@ -41,12 +42,14 @@
         <Button
             android:id="@+id/filterIncomplete"
             android:layout_width="145dp"
+            android:layout_margin="3dp"
             android:layout_height="wrap_content"
             android:text="Incomplete" />
 
         <Button
             android:id="@+id/filterCompleted"
             android:layout_width="145dp"
+            android:layout_margin="3dp"
             android:layout_height="wrap_content"
             android:text="Completed" />
     </LinearLayout>
