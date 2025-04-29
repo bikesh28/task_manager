@@ -15,6 +15,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE tasks("
+                + "id int PRIMARY KEY AUTOINCREMENT,"
+                + "title TEXT NOT NULL,"
+                + "description TEXT NOT NULL,"
+                + "priority INTEGER DEFAULT 0,"
+                + "isComplete INTEGER DEFAULT 0)");
 
     }
 
